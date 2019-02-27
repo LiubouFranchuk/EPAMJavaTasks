@@ -1,8 +1,8 @@
 package com.epam.automation.Tests;
 
 import com.epam.automation.Pages.*;
-import jdk.nashorn.internal.parser.JSONParser;
-import org.json.JSONObject;
+import org.json.simple.parser.JSONParser;
+import org.json.simple.JSONObject;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -20,21 +20,25 @@ public class DraftTest  extends  BasicTest{
     @Test (dataProvider = "users")
     public void DraftTest(String user, String pass) {
 
-        DraftsPage draftsPage = PageFactory.initElements(driver, DraftsPage.class);
+       /* DraftsPage draftsPage = PageFactory.initElements(driver, DraftsPage.class);
         LoginPage loginPage = PageFactory.initElements(driver, LoginPage.class);
         SentPage sentPage = PageFactory.initElements(driver, SentPage.class);
-        StartEmailPage startEmailPage = PageFactory.initElements(driver, StartEmailPage.class);
+        StartEmailPage startEmailPage = PageFactory.initElements(driver, StartEmailPage.class);*/
 
 //        LoginPage loginPage1 = new LoginPage();
         //TODO page objects - see above
 
 
         driver.get("https://mail.google.com/");
+        LoginPage loginPage = new LoginPage();
         loginPage.login(user, pass);
+        StartEmailPage startEmailPage = new StartEmailPage();
+        startEmailPage.startEmail();
+/*        loginPage.login(user, pass);
         startEmailPage.startEmail();
         draftsPage.dealWithDrafts();
         sentPage.sendEmail();
-        loginPage.signout();
+        loginPage.signout();*/
 
 
         //TODO more details here (e.g. main page - click button & possibly define which button)
@@ -44,22 +48,23 @@ public class DraftTest  extends  BasicTest{
 
 
     @DataProvider(name="users")
-    public Object [][] getUsers() throws FileNotFoundException {
+    public Object[][] getUsers(){
+        String[][] credentials = new String[1][2];
+        try{
+            Object fileObject = new JSONParser().parse(
+                    new FileReader(getClass().getClassLoader().getResource("Creds.json").getFile()));
+            JSONObject jsonObject = (JSONObject) fileObject;
+            String loginName = (String) jsonObject.get("loginName");
+            String password = (String) jsonObject.get("password");
 
+            credentials[0][0] = loginName;
+            credentials[0][1] = password;
 
-        Object obj = new JSONParser().parse(new FileReader("/Users/mac/IdeaProjects/EPAMJavaTasks/src/test/resources/Creds.json"));
-        //TODO question 8 - what's wrong with the parser?
+        } catch (Exception e){
 
-        //TODO fetch a file from resources this class - class loader - get resource
-
-        JSONObject jo = (JSONObject) obj;
-        //added an external library for JSON
-        String loginName =  (String) jo.get("loginName");
-        String password = (String) jo.get("password");
-
-        return new Object[][]{
-              {loginName, password}
-        };
+            //TODO here should be logger which will log an error - e.printStackTrace();
+        }
+        return credentials;
     }
 
 

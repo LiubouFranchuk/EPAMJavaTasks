@@ -34,7 +34,7 @@ public class LoginPage extends BasicPage{
         nextButton2.click();
 
 //        assert googleAcc.getText().equals(userAbstr);
-        System.out.println("Logged in as " + googleAcc.getText();
+        System.out.println("Logged in as " + googleAcc.getText());
         //TODO question 3 - can't get text at this point. NOTE - this is working with assertText in Katalon
 
 
