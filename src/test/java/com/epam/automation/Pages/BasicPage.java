@@ -18,21 +18,23 @@ public class BasicPage {
     //private or protected
 
 
+    By sendEmailButton = By.id(":ow");
+    By goToDrafts = By.xpath("//a[@title='Drafts']");
+    By goToSent = By.xpath("//a[@title='Sent']");
+    By newEmailButton = By.xpath("//div[contains(text(),'Compose')]");
+    By emailTo = By.name("to");
+    By emailBody = By.xpath("//div[@aria-label='Message Body']");
+    By emailClose = By.xpath("//img[@aria-label='Save & close']");
+    By signoutButton = By.xpath("//a[contains(text(),'Sign out')]");
+
+
+
     protected String emailToText = "prablgaivblshe@gmail.com";
     protected String subjectboxText = "Java Test";
     protected String emailBodyText = "This is a test email created by Liubou Franchuk with the help of Selenium.";
 
 
-    WebElement sendEmailButton = driver.findElement(By.id(":ow"));
-    WebElement goToDrafts = driver.findElement(By.xpath("//a[@title='Drafts']"));
-    WebElement goToSent = driver.findElement(By.xpath("//a[@title='Sent']"));
 
-    WebElement newEmailButton = driver.findElement(By.xpath("//div[contains(text(),'Compose')]"));
-    WebElement emailTo = driver.findElement(By.name("to"));
-    WebElement emailBody = driver.findElement(By.xpath("//div[@aria-label='Message Body']"));
-    WebElement emailClose = driver.findElement(By.xpath("//img[@aria-label='Save & close']"));
-
-    WebElement signoutButton = driver.findElement(By.xpath("//a[contains(text(),'Sign out')]"));
 
 
     //NOTE - these elements are declared in the Basic page since they can be accessed from any page

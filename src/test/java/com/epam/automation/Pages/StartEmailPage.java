@@ -10,13 +10,20 @@ public class StartEmailPage extends BasicPage{
 
     public void startEmail(){
 
-        newEmailButton.click();
+        WebElement newEmailButtonWe = driver.findElement(newEmailButton);
+        newEmailButtonWe.click();
 
-        emailTo.sendKeys(emailToText);WebElement emailSubject = driver.findElement(By.name("subjectbox"));
+        WebElement emailToWe = driver.findElement(emailTo);
+        emailToWe.sendKeys(emailToText);WebElement emailSubject = driver.findElement(By.name("subjectbox"));
         emailSubject.sendKeys(subjectboxText);
         driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
-        emailBody.sendKeys(emailBodyText);
-        emailClose.click();
+
+        WebElement emailBodyWe = driver.findElement(emailBody);
+        emailBodyWe.sendKeys(emailBodyText);
+        WebElement emailCloseWe = driver.findElement(emailClose);
+        emailCloseWe.click();
+
+
 
     }
 }

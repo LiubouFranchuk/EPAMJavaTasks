@@ -8,7 +8,8 @@ public class DraftsPage extends BasicPage{
 
     public void dealWithDrafts() {
 
-        goToDrafts.click();
+        WebElement goToDraftsWe = driver.findElement(goToDrafts);
+        goToDraftsWe.click();
         assert driver.getPageSource().contains(emailBodyText);
         driver.findElement(By.xpath("//*[contains(text(),'" + subjectboxText + "')]")).click();
         assert driver.findElement(By.xpath("//*[@id=':n3'//*[contain(text(),'" + emailToText + "')]")).isDisplayed();

@@ -7,7 +7,7 @@ import org.openqa.selenium.remote.BrowserType;
 
 public class DriverProvider {
 
-    public static WebDriver driver;
+    private static WebDriver driver;
 
     public static WebDriver getDriver(String drivertype) {
 

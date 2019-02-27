@@ -10,10 +10,13 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
+
+
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 
 import org.openqa.selenium.support.PageFactory;
+
 
 public class DraftTest  extends  BasicTest{
 
@@ -32,8 +35,18 @@ public class DraftTest  extends  BasicTest{
         driver.get("https://mail.google.com/");
         LoginPage loginPage = new LoginPage();
         loginPage.login(user, pass);
+
         StartEmailPage startEmailPage = new StartEmailPage();
         startEmailPage.startEmail();
+
+        DraftsPage draftsPage = new DraftsPage();
+        draftsPage.dealWithDrafts();
+
+        SentPage sentPage = new SentPage();
+        sentPage.sendEmail();
+
+        loginPage.signout();
+
 /*        loginPage.login(user, pass);
         startEmailPage.startEmail();
         draftsPage.dealWithDrafts();

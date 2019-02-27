@@ -7,19 +7,26 @@ import org.openqa.selenium.remote.BrowserType;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
 
+import java.util.concurrent.TimeUnit;
+
 public class BasicTest {
-    private WebDriver driver;
+    protected WebDriver driver;
 
     @BeforeTest
     public void setupBrowser(){
         driver = DriverProvider.getDriver(BrowserType.CHROME);
         driver.manage().deleteAllCookies();
+        driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
 
     }
 
     @AfterTest
     public void tearDown(){
-        driver.quit();
+//        driver.close();
+
+        //QUITE doesn't remove the intance of the browser, CLOSE - does.
     }
+
+    //TODO try quite / close / kill - to get rid of FF opened instances
 
 }

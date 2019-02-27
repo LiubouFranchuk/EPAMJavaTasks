@@ -9,13 +9,17 @@ public class SentPage extends BasicPage {
 
     public void sendEmail(){
 
-        sendEmailButton.click();
+        WebElement sendEmailButtonWe = driver.findElement(sendEmailButton);
+        sendEmailButtonWe.click();
 
-        goToDrafts.click();
+        WebElement goToDraftsWe = driver.findElement(goToDrafts);
+        goToDraftsWe.click();
         assert !driver.getPageSource().contains(emailBodyText);
 
-        goToSent.click();
+        WebElement goToSentWe = driver.findElement(goToSent);
+        goToSentWe.click();
         assert driver.getPageSource().contains(emailBodyText);
+
 
 
     }
