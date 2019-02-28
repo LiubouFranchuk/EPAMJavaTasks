@@ -8,6 +8,8 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.remote.BrowserType;
 //import org.openqa.selenium.support.ui.ExpectedConditions;
 //import org.openqa.selenium.support.ui.WebDriverWait;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.*;
 
 import java.util.concurrent.TimeUnit;
@@ -33,14 +35,17 @@ public class BasicPage {
     protected String subjectboxText = "Java Test";
     protected String emailBodyText = "This is a test email created by Liubou Franchuk with the help of Selenium.";
 
+    public BasicPage() {
+        this.driver = DriverProvider.getDriver(BrowserType.FIREFOX);
+    }
 
+    public WebElement waitElementVisibility(By elm){
+        WebDriverWait wait = new WebDriverWait(driver, 10);
+        WebElement webElement = wait.until(
+                ExpectedConditions.visibilityOfElementLocated(elm));
 
-
-
-    //NOTE - these elements are declared in the Basic page since they can be accessed from any page
-
-
-
+        return webElement;
+    }
 }
 
 //TODO page objects + page factory
