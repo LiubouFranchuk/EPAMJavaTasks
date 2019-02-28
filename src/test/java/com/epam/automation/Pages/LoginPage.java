@@ -10,11 +10,11 @@ public class LoginPage extends BasicPage{
    /* By arg = By.id("identifierId");
     WebElement argElement = driver.findElement(arg);*/
 
-    By loginInput = By.id("identifierId");
-    By nextButton = By.xpath("//span[@class='RveJvd snByac']");
-    By passInput = By.name("password");
-    By nextButton2 = By.xpath("//*[@id=\"passwordNext\"]/content/span");
-    By googleAcc = By.xpath("//div[contains(text(),'Google Account')]/following-sibling::div[2]");
+    private By loginInput = By.id("identifierId");
+    private By nextButton = By.xpath("//span[@class='RveJvd snByac']");
+    private By passInput = By.name("password");
+    private By nextButton2 = By.xpath("//*[@id=\"passwordNext\"]/content/span");
+    private By googleAcc = By.xpath("//div[contains(text(),'Google Account')]/following-sibling::div[2]");
 
     //TODO question 5 - is it sensible to put web elements and methods together in Pages? [DONE]
 
@@ -22,14 +22,14 @@ public class LoginPage extends BasicPage{
 
 
     public void login(String userAbstr, String passAbstr) {
+
         WebElement loginInputWe = driver.findElement(loginInput);
         loginInputWe.sendKeys(userAbstr);
 
         WebElement nextButtonWe = driver.findElement(nextButton);
         nextButtonWe.click();
-        driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
 
-        WebElement passInputWe = driver.findElement(passInput);
+        WebElement passInputWe = waitElementVisibility(passInput);
         passInputWe.sendKeys(passAbstr);
         driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
 
@@ -45,12 +45,7 @@ public class LoginPage extends BasicPage{
 
 
 
-//        WebDriverWait wait = new WebDriverWait(driver, 10);
-//        WebElement passInput = wait.until(
-//                ExpectedConditions.visibilityOfElementLocated(By.xpath("//input[@type='password']")));
-//
-//        passInput.sendKeys(passAbstr);
-//        nextButton.click();
+
 
         //TODO question 1 - how do I get rid of the method errors with WebDriverWait
 

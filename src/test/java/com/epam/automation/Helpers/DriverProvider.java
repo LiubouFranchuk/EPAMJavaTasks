@@ -16,21 +16,15 @@ public class DriverProvider {
             switch (drivertype){
                 case BrowserType.CHROME:
                     System.setProperty("webdriver.chrome.driver", "src/test/resources/drivers/chromedriver");
-                    return new ChromeDriver();
+                    return driver = new ChromeDriver();
                 case BrowserType.FIREFOX:
-                    System.setProperty("webdriver.gecko.driver", "src/test/resources/drivers/geckodriver");
-                    return new FirefoxDriver();
+                    System.setProperty("webdriver.gecko.driver", "src/test/resources/drivers/geckodriverL");
+                    return driver = new FirefoxDriver();
                 default:
                     throw new Error("Missing or incorrect browser Java Property");
             }
         }
-
         return driver;
-
-
-
     }
-
-
 }
 

@@ -13,8 +13,9 @@ public class StartEmailPage extends BasicPage{
         WebElement newEmailButtonWe = driver.findElement(newEmailButton);
         newEmailButtonWe.click();
 
-        WebElement emailToWe = driver.findElement(emailTo);
-        emailToWe.sendKeys(emailToText);WebElement emailSubject = driver.findElement(By.name("subjectbox"));
+        WebElement emailToWe = waitElementVisibility(emailTo);
+        emailToWe.sendKeys(emailToText);
+        WebElement emailSubject = driver.findElement(By.name("subjectbox"));
         emailSubject.sendKeys(subjectboxText);
         driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
 
