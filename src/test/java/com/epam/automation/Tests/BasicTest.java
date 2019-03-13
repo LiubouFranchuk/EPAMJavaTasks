@@ -14,7 +14,7 @@ public class BasicTest {
 
     @BeforeTest
     public void setupBrowser(){
-        driver = DriverProvider.getDriver(BrowserType.CHROME);
+        driver = DriverProvider.getDriver(BrowserType.FIREFOX);
         driver.manage().deleteAllCookies();
         driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
 

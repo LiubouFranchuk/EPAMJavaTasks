@@ -39,6 +39,8 @@ public class BasicPage {
         this.driver = DriverProvider.getDriver(BrowserType.FIREFOX);
     }
 
+    //this constructor is the main purpose of the BasicPage
+
     public WebElement waitElementVisibility(By elm){
         WebDriverWait wait = new WebDriverWait(driver, 10);
         WebElement webElement = wait.until(

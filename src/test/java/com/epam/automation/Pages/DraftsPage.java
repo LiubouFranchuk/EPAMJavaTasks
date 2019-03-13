@@ -17,4 +17,6 @@ public class DraftsPage extends BasicPage{
         assert driver.findElement(By.xpath("//*[@id=':qm'//*[contain(text(),'" + emailBodyText + "')]")).isDisplayed();
 
     }
+
+    //TODO implement randomiser for unique drafts in helpers or remove old drafts
 }
