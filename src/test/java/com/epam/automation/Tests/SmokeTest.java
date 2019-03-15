@@ -11,7 +11,7 @@ public class SmokeTest extends BasicTest{
 
         System.setProperty("webdriver.chrome.driver", "src/test/resources/drivers/chromedriver");
         WebDriver driver = new ChromeDriver();
-        driver.get("https://vk.com/");
+        driver.get("https://tut.by/");
 
     }
 

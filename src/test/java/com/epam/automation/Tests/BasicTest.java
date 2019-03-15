@@ -1,7 +1,6 @@
 package com.epam.automation.Tests;
 
 import com.epam.automation.Helpers.DriverProvider;
-import com.epam.automation.Pages.BasicPage;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.remote.BrowserType;
 import org.testng.annotations.AfterTest;
@@ -17,6 +16,7 @@ public class BasicTest {
         driver = DriverProvider.getDriver(BrowserType.FIREFOX);
         driver.manage().deleteAllCookies();
         driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
+        driver.manage().window().maximize();
 
     }
 
@@ -24,9 +24,9 @@ public class BasicTest {
     public void tearDown(){
 //        driver.close();
 
-        //QUITE doesn't remove the intance of the browser, CLOSE - does.
+        //QUIT doesn't remove the instance of the browser, CLOSE - does.
     }
 
-    //TODO try quite / close / kill - to get rid of FF opened instances
+
 
 }

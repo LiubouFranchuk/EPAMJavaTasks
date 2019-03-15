@@ -17,7 +17,7 @@ public class DriverProvider {
                 case BrowserType.CHROME:
                     System.setProperty("webdriver.chrome.driver", "src/test/resources/drivers/chromedriver");
                     return driver = new ChromeDriver();
-                    //if w/o return --> add break here
+                    //if w/o return at the end --> add break here
 
                 case BrowserType.FIREFOX:
                     System.setProperty("webdriver.gecko.driver", "src/test/resources/drivers/geckodriver");

@@ -7,16 +7,13 @@ import java.util.concurrent.TimeUnit;
 
 public class LoginPage extends BasicPage{
 
-   /* By arg = By.id("identifierId");
-    WebElement argElement = driver.findElement(arg);*/
 
     private By loginInput = By.id("identifierId");
     private By nextButton = By.xpath("//span[@class='RveJvd snByac']");
     private By passInput = By.name("password");
-//    private By nextButton2 = By.xpath("//*[@id=\"passwordNext\"]/content/span");
-    private By googleAcc = By.xpath("//div[contains(text(),'Google Account')]/following-sibling::div[2]");
-
-    //TODO question 5 - is it sensible to put web elements and methods together in Pages? [DONE]
+    private By nextButton2 = By.xpath("//*[@id='passwordNext']/content/span");
+    private By googleAcc = By.xpath("//*[contains(text(),'Privacy')]/../../div[2]");
+    private By accIcon = By.xpath("//span[@class='gb_ya gbii']");
 
 
 
@@ -30,30 +27,27 @@ public class LoginPage extends BasicPage{
         nextButtonWe.click();
 
         WebElement passInputWe = waitElementVisibility(passInput);
+//        WebElement passInputWe = driver.findElement(passInput);
         passInputWe.sendKeys(passAbstr);
         driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
 
-        //TODO question 2 - why did using the same button 2 times didn't work? JS issue?
-        WebElement nextButton2we = driver.findElement(nextButton);
-
-        //TODO remove the 2nd next btn
-
+        // using the same button 2 times didn't work - JS issue?
+        WebElement nextButton2we = waitElementVisibility(nextButton2);
         nextButton2we.click();
 
-//        assert googleAcc.getText().equals(userAbstr);
-        WebElement googleAccWe = driver.findElement(googleAcc);
+        /*TODO question - sometimes I have an error here which is reproducible randomly:
+        Element <span class="RveJvd snByac"> is not clickable at point (780,396)
+        because another element <div class="ANuIbb IdAqtf"> obscures it
+        */
+    }
+
+    public void checkAcc(String userAbstr){
+        WebElement accIconWe = waitElementVisibility(accIcon);
+        accIconWe.click();
+
+        WebElement googleAccWe = waitElementVisibility(googleAcc);
         System.out.println("Logged in as " + googleAccWe.getText());
-        //TODO question 3 - can't get text at this point. NOTE - this is working with assertText in Katalon
-        //TODO add 2 clicks to get CSS display
-
-
-
-
-
-
-        //TODO question 1 - how do I get rid of the method errors with WebDriverWait
-
-        //TODO waiter as a method +pass xpath only
+        assert googleAccWe.getText().equals(userAbstr);
 
     }
 

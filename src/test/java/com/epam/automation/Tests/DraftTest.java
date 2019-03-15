@@ -1,21 +1,12 @@
 package com.epam.automation.Tests;
 
+import com.epam.automation.Helpers.LogToFile;
 import com.epam.automation.Pages.*;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.JSONObject;
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
-
-
-
-import java.io.FileNotFoundException;
 import java.io.FileReader;
-
-import org.openqa.selenium.support.PageFactory;
 
 
 public class DraftTest  extends  BasicTest{
@@ -28,22 +19,36 @@ public class DraftTest  extends  BasicTest{
         SentPage sentPage = PageFactory.initElements(driver, SentPage.class);
         StartEmailPage startEmailPage = PageFactory.initElements(driver, StartEmailPage.class);*/
 
-//        LoginPage loginPage1 = new LoginPage();
-        //TODO page objects - see above
-
 
         driver.get("https://mail.google.com/");
         LoginPage loginPage = new LoginPage();
         loginPage.login(user, pass);
+        loginPage.checkAcc(user);
+
+        DraftsPage draftsPage = new DraftsPage();
+        draftsPage.goToDrafts();
+        draftsPage.goToDrafts();
+        //TODO question - user isn't redirected to Drafts though the same step works in line 38
+        // Current workaround is to duplicate the step
+
+//        draftsPage.clearOldDrafts();
 
         StartEmailPage startEmailPage = new StartEmailPage();
         startEmailPage.startEmail();
+        startEmailPage.writeEmail();
+        startEmailPage.closeEmail();
 
-        DraftsPage draftsPage = new DraftsPage();
-        draftsPage.dealWithDrafts();
+        draftsPage.goToDrafts();
+        draftsPage.checkDraftPresence();
+        draftsPage.checkDraftContent();
+
+        startEmailPage.sendEmail();
+        draftsPage.goToDrafts();
+        draftsPage.checkNoDraft();
 
         SentPage sentPage = new SentPage();
-        sentPage.sendEmail();
+        sentPage.goToSent();
+        sentPage.checkEmailIsSent();
 
         loginPage.signout();
 
@@ -53,11 +58,9 @@ public class DraftTest  extends  BasicTest{
         sentPage.sendEmail();
         loginPage.signout();*/
 
-
-        //TODO more details here (e.g. main page - click button & possibly define which button)
-
     }
 
+//    Logger logger = Logger.getLogger(Logger.GLOBAL_LOGGER_NAME);
 
 
     @DataProvider(name="users")
@@ -74,8 +77,9 @@ public class DraftTest  extends  BasicTest{
             credentials[0][1] = password;
 
         } catch (Exception e){
+//            logger.log(Level.SEVERE, "Login failure: ", e);
+            LogToFile.logToFile(e);
 
-            //TODO here should be logger which will log an error - e.printStackTrace();
         }
         return credentials;
     }

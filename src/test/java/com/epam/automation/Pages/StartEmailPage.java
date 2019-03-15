@@ -13,6 +13,9 @@ public class StartEmailPage extends BasicPage{
         WebElement newEmailButtonWe = driver.findElement(newEmailButton);
         newEmailButtonWe.click();
 
+    }
+
+    public void writeEmail(){
         WebElement emailToWe = waitElementVisibility(emailTo);
         emailToWe.sendKeys(emailToText);
         WebElement emailSubject = driver.findElement(By.name("subjectbox"));
@@ -21,10 +24,18 @@ public class StartEmailPage extends BasicPage{
 
         WebElement emailBodyWe = driver.findElement(emailBody);
         emailBodyWe.sendKeys(emailBodyText);
+    }
+
+    public void closeEmail() {
         WebElement emailCloseWe = driver.findElement(emailClose);
         emailCloseWe.click();
 
-
-
     }
+
+    public void sendEmail(){
+
+        WebElement sendEmailButtonWe = driver.findElement(sendEmailButton);
+        sendEmailButtonWe.click();
+    }
+
 }
